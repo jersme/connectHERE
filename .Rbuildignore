@@ -1,0 +1,10 @@
+^docs$
+^_pkgdown\.yml$
+^codecov\.yml$
+^\.travis\.yml$
+^\.github$
+^CODE_OF_CONDUCT\.md$
+^LICENSE\.md$
+^README\.Rmd$
+^connectHERE\.Rproj$
+^\.Rproj\.user$
