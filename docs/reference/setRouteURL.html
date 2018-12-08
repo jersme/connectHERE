@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set HERE App ID — setID • connectHERE</title>
+<title>Set routing url — setRouteURL • connectHERE</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Set HERE App ID — setID" />
+<meta property="og:title" content="Set routing url — setRouteURL" />
 
-<meta property="og:description" content="Set HERE App ID" />
+<meta property="og:description" content="Set routing url" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,35 +100,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set HERE App ID</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/setKeys.R'><code>R/setKeys.R</code></a></small>
-    <div class="hidden name"><code>setID.Rd</code></div>
+    <h1>Set routing url</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/getRoutes.R'><code>R/getRoutes.R</code></a></small>
+    <div class="hidden name"><code>setRouteURL.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Set HERE App ID</p>
+    <p>Set routing url</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>setID</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>setRouteURL</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://route.api.here.com/routing/"</span>,
+  <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"7.2"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>The project HERE App ID.</p></td>
+      <th>url</th>
+      <td><p>The base url for here API. Standard is
+"https://route.api.here.com/routing/"</p></td>
+    </tr>
+    <tr>
+      <th>version</th>
+      <td><p>The version of the API to be called.
+Standard is version 7.2</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The checked App ID.</p>
+    <p>The desired url for the API call.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>setID</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"xxxxxxxxxxxxxxxxxxxx"</span>)</div><div class='output co'>#&gt; <span class='message'>Key length correct.</span></div><div class='output co'>#&gt; [1] "xxxxxxxxxxxxxxxxxxxx"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>setRouteURL</span>()</div><div class='output co'>#&gt; [1] "https://route.api.here.com/routing/7.2/calculateroute.json?"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
