@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • connectHERE</title>
+<title>Extracts the distance from a getRoute() result. — extractDist • connectHERE</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Extracts the distance from a getRoute() result. — extractDist" />
+
+<meta property="og:description" content="Extracts the distance from a getRoute() result." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -107,72 +110,58 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Extracts the distance from a getRoute() result.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    <div class="hidden name"><code>extractDist.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Extracts the distance from a getRoute() result.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="apiStatusHERE.html">apiStatusHERE()</a></code> </p>
-        </td>
-        <td><p>Checks HERE REST API status</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extractDist.html">extractDist()</a></code> </p>
-        </td>
-        <td><p>Extracts the distance from a getRoute() result.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getRoute.html">getRoute()</a></code> </p>
-        </td>
-        <td><p>Get route information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="setCode.html">setCode()</a></code> </p>
-        </td>
-        <td><p>Set HERE App ID</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="setID.html">setID()</a></code> </p>
-        </td>
-        <td><p>Set HERE App ID</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="setRouteURL.html">setRouteURL()</a></code> </p>
-        </td>
-        <td><p>Set routing url</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>extractDist</span>(<span class='no'>route_object</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"km"</span>, <span class='kw'>rnd</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>route_object</th>
+      <td><p>The object as otputted by the getRoute() function.</p></td>
+    </tr>
+    <tr>
+      <th>unit</th>
+      <td><p>The unit of measure of the outputted distance object. Currently
+only "km" and "mi" are an option.</p></td>
+    </tr>
+    <tr>
+      <th>rnd</th>
+      <td><p>Rounds the result. TRUE is the standard setting.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The distance from a getRoute() object in km or mi.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>route_obj</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='kw'>response.route.summary.distance</span> <span class='kw'>=</span> <span class='fl'>100.25</span>)
+<span class='fu'>extractDist</span>(<span class='kw'>route_object</span> <span class='kw'>=</span> <span class='no'>route_obj</span>)</div><div class='output co'>#&gt; [1] 0</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

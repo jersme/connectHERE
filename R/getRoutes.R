@@ -94,7 +94,10 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
   # get the results out if the API
   results <- as.data.frame(jsonlite::fromJSON(httr::content(api_call, "text"), flatten = TRUE))
 
-
+  # return the results
   return(results)
 
 }
+
+
+
