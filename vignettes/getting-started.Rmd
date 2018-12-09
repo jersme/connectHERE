@@ -1,0 +1,40 @@
+---
+title: "Getting started"
+author: "Jeroen Smeets"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This getting started guide to the connectHERE R-package guides you through the first steps of connecting to the HERE REST API.
+
+## Step 1: Get a license and set keys in R
+Get a developer account from HERE. You can get a freemium developers license which is big enough to explore all the nice features of the HERE platform.
+
+To get a license go to https://developer.here.com/ and create an account. Next, create a REST API project to get the APP Id and the APP Code.
+
+After getting the APP Id and the APP Code, it's time to save these into the R-environment. The connectHERE package contains two little functions which check the APP Id and the APP Code to the standards.
+
+The code below stores the APP Id and the APP Code to the standard names, as used by
+all the functions in the connectHERE package. It's highly recommended to use 
+the standard names, as it will save you a lot of typing in the functions later 
+on.
+
+Run the code below to set your id and code.
+```
+app_id <- setID(id = "YOUR APP Id")
+app_code <- setCode(code = "YOUR APP Code")
+
+```
+
+## Step 2: Get a standard trucking route from the API
