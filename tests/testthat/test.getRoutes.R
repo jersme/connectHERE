@@ -30,4 +30,10 @@ test_that("Check inputs", {
                "x is no valid vehicle type selected. Only truck or car is allowed.")
 })
 
+context("diffDistTruckCar")
+
+test_that("Check output", {
+  expect_error(diffDistTruckCar(app_id = app_id, app_code = "xxx", waypoint0 = "52.5,13.4", waypoint1 = "54.5,13", rnd = F))
+})
+
 
