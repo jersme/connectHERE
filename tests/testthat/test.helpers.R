@@ -1,31 +1,39 @@
 context("API status")
 
-test_object_true <- numeric(0)
-test_object_true$status_code <- 200
-test_object_true <- as.data.frame(test_object_true)
-
-test_object_401 <- numeric(0)
-test_object_401$status_code <- 401
-test_object_401 <- as.data.frame(test_object_401)
-
-test_object_402 <- numeric(0)
-test_object_402$status_code <- 402
-test_object_402 <- as.data.frame(test_object_402)
-
-test_object_false <- numeric(0)
-test_object_false$status_code <- 300
-test_object_false <- as.data.frame(test_object_false)
+# create test status codes
+status_test_200 <- list(status_code = 200)
+status_test_401 <- list(status_code = 401)
+status_test_402 <- list(status_code = 402)
+status_test_300 <- list(status_code = 300)
 
 test_that("api status", {
-  expect_true(apiStatusHERE(api_call_object = test_object_true))
-  expect_false(apiStatusHERE(api_call_object = test_object_false))
-  expect_warning(apiStatusHERE(api_call_object = test_object_false),
+  expect_true(apiStatusHERE(api_call_object = status_test_200))
+  expect_false(apiStatusHERE(api_call_object = status_test_300))
+  expect_warning(apiStatusHERE(api_call_object = status_test_300),
                  "API request status: 300 . Please review results, if any, carefully!")
-  expect_warning(apiStatusHERE(api_call_object = test_object_401),
+  expect_warning(apiStatusHERE(api_call_object = status_test_401),
                  "Unauthorized: Invalid authentication.")
-  expect_false(apiStatusHERE(api_call_object = test_object_401))
-  expect_warning(apiStatusHERE(api_call_object = test_object_402),
+  expect_false(apiStatusHERE(api_call_object = status_test_401))
+  expect_warning(apiStatusHERE(api_call_object = status_test_402),
                  "Forbidden: Incorrect app_code or app_id in the request.")
-  expect_false(apiStatusHERE(api_call_object = test_object_402))
+  expect_false(apiStatusHERE(api_call_object = status_test_402))
 
+})
+
+context("extractDist")
+
+test_route_obj <- list(response.route.summary.distance = 100.25)
+
+test_that("Check inputs", {
+  expect_error(extractDist(),
+               "No route object specified.")
+  expect_error(extractDist(route_object = test_route_obj, unit = "m"),
+               "No valid measure for distance specified. Only km or mi is allowed.")
+})
+
+test_that("Check outputs", {
+  expect_equal(extractDist(route_object = test_route_obj, unit = "km") * .621371,
+               extractDist(route_object = test_route_obj, unit = "mi"))
+  expect_true(extractDist(route_object = test_route_obj)%%1==0)
+  expect_false(extractDist(route_object = test_route_obj, rnd = FALSE)%%1==0)
 })
