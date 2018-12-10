@@ -94,7 +94,48 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
   # get the results out if the API
   results <- as.data.frame(jsonlite::fromJSON(httr::content(api_call, "text"), flatten = TRUE))
 
-
+  # return the results
   return(results)
 
 }
+
+#' Return delta in distance between truck and car routes
+#'
+#' @param url The base url as required to connect to the HERE API. If no value
+#' is passed in this parameter the standard parameter from the setRouteURL() is
+#' used. See the documentation for the setRouteURL() for more information about
+#' the base url.
+#' @param app_id App id for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Id.
+#' @param app_code App Code for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Code.
+#' @param waypoint0 Starting point as a position with in geocoordinates.
+#' @param waypoint1 End point as a position with in geocoordinates.
+#' @param unit The unit of measure of the outputted distance object. Currently
+#' only "km" and "mi" are an option.
+#' @param rnd Rounds the result. TRUE is the standard setting.
+#'
+#' @return A list with the truck and car distance
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' diffDistTruckCar(app_id = "xxx, app_code = "xxx", waypoint0 = "52.5,13.4", waypoint1 = "54.5,13")
+#' }
+diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1, unit = "km", rnd = TRUE) {
+
+  # car/truck distance
+  tryCatch({
+    car_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "car"), unit = unit, rnd = rnd)
+    truck_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "truck"), unit = unit, rnd = rnd)
+  })
+
+
+  # create results list
+  results <- list(car = car_dist, truck = truck_dist)
+
+  # return(results)
+  return(results)
+
+}
+
