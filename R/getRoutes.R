@@ -125,8 +125,11 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
 diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1, unit = "km", rnd = TRUE) {
 
   # car/truck distance
-  car_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "car"), unit = unit, rnd = rnd)
-  truck_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "truck"), unit = unit, rnd = rnd)
+  tryCatch({
+    car_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "car"), unit = unit, rnd = rnd)
+    truck_dist <- extractDist(route_object = getRoute(url = url, app_id = app_id, app_code = app_code, waypoint0 = waypoint0, waypoint1 = waypoint1, vehicle = "truck"), unit = unit, rnd = rnd)
+  })
+
 
   # create results list
   results <- list(car = car_dist, truck = truck_dist)
