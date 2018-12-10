@@ -85,8 +85,10 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
                      "&waypoint1=geo!", waypoint1,
                      mode_param,
                      "&limitedWeight=30.5&height=4.25&shippedHazardousGoods=harmfulToWater")
+  tryCatch({
+    api_call <- httr::GET(url = url_call)
+  })
 
-  api_call <- httr::GET(url = url_call)
 
   # check call status
   call_status <- apiStatusHERE(api_call_object = api_call)
@@ -138,4 +140,32 @@ diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, w
   return(results)
 
 }
+
+diffDistTruckCarBatch <- function(url = setRouteURL() ,df, app_id, app_code, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
+
+  # create an empty data.frame to add the results later
+  distance_all <- data.frame()
+
+  # run the api call over every function
+  for (i in seq(1, nrow(df))) {
+
+    # api call
+    result <- diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1])
+
+    # create the single row data.frame and catch error if the api returns an error code
+    distance <- tryCatch(data.frame(car = result$car, truck = result$truck), error = function(err){data.frame(car = 99999, truck = 99999)})
+
+    # bind the for loop rows to the data frame
+    distance_all <- rbind(distance_all, distance)
+  }
+
+  distances <- bind_cols(df, distance_all)
+
+  # return  the data frame
+  return(distances)
+}
+
+
+
+
 
