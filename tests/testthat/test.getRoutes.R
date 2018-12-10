@@ -44,7 +44,19 @@ test_that("Check input", {
                "Select the data frame containing waypoint 0 and 1")
   expect_error(diffDistTruckCarBatch(df = "x", app_id = "xxx", app_code = "xxx"),
                "Dataframe selected is not of type data.frame")
-  expect_error(diffDistTruckCarBatch(df = data.frame(), app_id = "xxx", app_code = "xxx"))
+})
+
+test_that("Check output" ,{
+  expect_equal(diffDistTruckCarBatch(df = data.frame(waypoint0 = "xxx", waypoint1 = "yyy"), app_id = "xxx", app_code = "xxx")[1, 1],
+               as.factor("xxx"))
+  expect_equal(diffDistTruckCarBatch(df = data.frame(waypoint0 = "xxx", waypoint1 = "yyy"), app_id = "xxx", app_code = "xxx")[1, 2],
+               as.factor("yyy"))
+  expect_equal(diffDistTruckCarBatch(df = data.frame(waypoint0 = "xxx", waypoint1 = "yyy"), app_id = "xxx", app_code = "xxx")[1, 3],
+               99999)
+  expect_equal(diffDistTruckCarBatch(df = data.frame(waypoint0 = "xxx", waypoint1 = "yyy"), app_id = "xxx", app_code = "xxx")[1, 4],
+               99999)
+  expect_equal(nrow(diffDistTruckCarBatch(df = data.frame(waypoint0 = c("xxx", "yyy"), waypoint1 = c("yyy", "xxx")), app_id = "xxx", app_code = "xxx")),
+               2)
 })
 
 

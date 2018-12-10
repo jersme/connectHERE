@@ -160,16 +160,20 @@ diffDistTruckCarBatch <- function(url = setRouteURL(), df, app_id, app_code, way
 
     # api call
 
-    result <- tryCatch(diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1]), error = function(err_list){list(car = 99999, truck = 99999)})
+    result <- tryCatch(diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1]),
+                       warning = function(err_list) {list(car = 99999, truck = 99999)
+                       })
 
     # create the single row data.frame and catch error if the api returns an error code
-    distance <- tryCatch(data.frame(car = result$car, truck = result$truck), error = function(err_df){data.frame(car = 99999, truck = 99999)})
+    distance <- tryCatch(data.frame(car = result$car, truck = result$truck),
+                         error = function(err_df){data.frame(car = 99999, truck = 99999)
+                      })
 
     # bind the for loop rows to the data frame
     distance_all <- rbind(distance_all, distance)
   }
 
-  distances <- bind_cols(df, distance_all)
+  distances <- dplyr::bind_cols(df, distance_all)
 
   # return  the data frame
   return(distances)
