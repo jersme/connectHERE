@@ -44,6 +44,7 @@ test_that("Check input", {
                "Select the data frame containing waypoint 0 and 1")
   expect_error(diffDistTruckCarBatch(df = "x", app_id = "xxx", app_code = "xxx"),
                "Dataframe selected is not of type data.frame")
+  expect_error(diffDistTruckCarBatch(df = data.frame(), app_id = "xxx", app_code = "xxx"))
 })
 
 
