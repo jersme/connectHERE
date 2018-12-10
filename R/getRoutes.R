@@ -122,7 +122,11 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
 #'
 #' @examples
 #' \dontrun{
-#' diffDistTruckCar(app_id = "xxx, app_code = "xxx", waypoint0 = "52.5,13.4", waypoint1 = "54.5,13")
+#' diffDistTruckCar(
+#' app_id = "xxx",
+#' app_code = "xxx",
+#' waypoint0 = "52.5,13.4",
+#' waypoint1 = "54.5,13")
 #' }
 diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1, unit = "km", rnd = TRUE) {
 
@@ -141,7 +145,32 @@ diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, w
 
 }
 
-diffDistTruckCarBatch <- function(url = setRouteURL(), df, app_id, app_code, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
+#' Batch input (data.frame) for the diffDistTruckCar() function.
+#'
+#' @param url The base url as required to connect to the HERE API. If no value
+#' is passed in this parameter the standard parameter from the setRouteURL() is
+#' used. See the documentation for the setRouteURL() for more information about
+#' the base url.
+#' @param app_id App id for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Id.
+#' @param app_code App Code for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Code.
+#' @param df Dataframe where for the distances will be calculated based on the
+#' geocoordinates.
+#' @param waypoint0 Name of the column for the waypoint 0.
+#' @param waypoint1 Name of the column for the waypoint 0.
+#'
+#' @return The truck and car distances for each each row in the inputted
+#' dataframe.
+#' @export
+#'
+#' @examples
+#' diffDistTruckCarBatch(
+#' df = data.frame(waypoint0 = c("xxx", "yyy"), waypoint1 = c("yyy", "xxx")),
+#' app_id = "xxx",
+#' app_code = "xxx"
+#' )
+diffDistTruckCarBatch <- function(url = setRouteURL(),app_id, app_code, df, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
 
   # check the inputs
   if (methods::hasArg(df) == FALSE ) {
