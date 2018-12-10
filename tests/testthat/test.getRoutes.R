@@ -37,4 +37,13 @@ test_that("Check output", {
   expect_true(is.list(diffDistTruckCar(app_id = "xxx", app_code = "xxx", waypoint0 = "52.5,13.4", waypoint1 = "54.5,13", rnd = F)))
 })
 
+context("diffDistTruckCarBatch")
+
+test_that("Check input", {
+  expect_error(diffDistTruckCarBatch(app_id = "xxx", app_code = "xxx"),
+               "Select the data frame containing waypoint 0 and 1")
+  expect_error(diffDistTruckCarBatch(df = "x", app_id = "xxx", app_code = "xxx"),
+               "Dataframe selected is not of type data.frame")
+})
+
 

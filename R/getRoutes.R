@@ -141,7 +141,16 @@ diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, w
 
 }
 
-diffDistTruckCarBatch <- function(url = setRouteURL() ,df, app_id, app_code, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
+diffDistTruckCarBatch <- function(url = setRouteURL(), df, app_id, app_code, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
+
+  # check the inputs
+  if (methods::hasArg(df) == FALSE ) {
+    stop("Select the data frame containing waypoint 0 and 1")
+  }
+
+  if (is.data.frame(df) == FALSE) {
+    stop("Dataframe selected is not of type data.frame")
+  }
 
   # create an empty data.frame to add the results later
   distance_all <- data.frame()
@@ -150,7 +159,9 @@ diffDistTruckCarBatch <- function(url = setRouteURL() ,df, app_id, app_code, way
   for (i in seq(1, nrow(df))) {
 
     # api call
-    result <- diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1])
+    tryCatch({
+      result <- diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1])
+    })
 
     # create the single row data.frame and catch error if the api returns an error code
     distance <- tryCatch(data.frame(car = result$car, truck = result$truck), error = function(err){data.frame(car = 99999, truck = 99999)})
