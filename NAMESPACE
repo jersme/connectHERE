@@ -2,6 +2,7 @@
 
 export(apiStatusHERE)
 export(diffDistTruckCar)
+export(diffDistTruckCarBatch)
 export(extractDist)
 export(getRoute)
 export(setCode)
