@@ -37,3 +37,17 @@ test_that("Check outputs", {
   expect_true(extractDist(route_object = test_route_obj)%%1==0)
   expect_false(extractDist(route_object = test_route_obj, rnd = FALSE)%%1==0)
 })
+
+context("createWaypoint")
+
+test_that("Check inputs", {
+  expect_error(createWaypoint(lon = 16.37208),
+               "Add a lattitude in the lat argument.")
+  expect_error(createWaypoint(lat = 48.20849),
+               "Add a longitude in the lon argument.")
+})
+
+test_that("Check outputs", {
+  expect_equal(createWaypoint(48.20849, 16.37208),
+               "48.20849,16.37208")
+})
