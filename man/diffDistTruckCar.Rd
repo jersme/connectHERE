@@ -34,3 +34,12 @@ A list with the truck and car distance
 \description{
 Return delta in distance between truck and car routes
 }
+\examples{
+\dontrun{
+diffDistTruckCar(
+app_id = "xxx",
+app_code = "xxx",
+waypoint0 = "52.5,13.4",
+waypoint1 = "54.5,13")
+}
+}
