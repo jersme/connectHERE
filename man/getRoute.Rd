@@ -9,8 +9,8 @@ getRoute(url = setURL(type = "routing"), app_id, app_code, waypoint0,
 }
 \arguments{
 \item{url}{The base url as required to connect to the HERE API. If no value
-is passed in this parameter the standard parameter from the setRouteURL() is
-used. See the documentation for the setRouteURL() for more information about
+is passed in this parameter the standard parameter from the setURL() is
+used. See the documentation for the setURL() for more information about
 the base url.}
 
 \item{app_id}{App id for the HERE REST API call. See the vignette: Getting
