@@ -72,3 +72,33 @@ extractDist <- function(route_object, unit = "km", rnd = TRUE) {
   # returns the distance value
   return(dist)
 }
+
+#' Helper function to create a waypoint from a lattitude and a
+#' longitude.
+#'
+#' @param lat Lattitude coordinates
+#' @param lon Longitude coordinates
+#'
+#' @return A waypoint geocoordinates object as use is the HERE
+#' routing API>
+#' @export
+#'
+#' @examples createWaypoint(48.20849, 16.37208)
+createWaypoint <- function(lat , lon) {
+
+  # check if lat and lon are present
+  if (methods::hasArg(lat) == FALSE) {
+    stop("Add a lattitude in the lat argument.")
+  }
+
+  if (methods::hasArg(lon) == FALSE) {
+    stop("Add a longitude in the lon argument.")
+  }
+
+  # create the correct waypoint format
+  wp <- paste0(lat, ",", lon)
+
+  # return the waypoint
+  return(wp)
+
+}
