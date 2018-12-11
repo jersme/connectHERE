@@ -184,11 +184,13 @@ diffDistTruckCarBatch <- function(url = setRouteURL(),app_id, app_code, df, wayp
   # create an empty data.frame to add the results later
   distance_all <- data.frame()
 
+  # create a progress bar
+  pb <- progress::progress_bar$new(total = nrow(df))
+
   # run the api call over every function
   for (i in seq(1, nrow(df))) {
 
     # api call
-
     result <- tryCatch(diffDistTruckCar(app_id = app_id, app_code = app_code, waypoint0 = df[i,waypoint0], waypoint1 = df[i,waypoint1]),
                        warning = function(err_list) {list(car = 99999, truck = 99999)
                        })
@@ -200,6 +202,9 @@ diffDistTruckCarBatch <- function(url = setRouteURL(),app_id, app_code, df, wayp
 
     # bind the for loop rows to the data frame
     distance_all <- rbind(distance_all, distance)
+
+    # progress bar tick
+    pb$tick()
   }
 
   distances <- dplyr::bind_cols(df, distance_all)
