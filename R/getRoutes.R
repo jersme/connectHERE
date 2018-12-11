@@ -185,7 +185,7 @@ diffDistTruckCarBatch <- function(url = setRouteURL(),app_id, app_code, df, wayp
   distance_all <- data.frame()
 
   # create a progress bar
-  pb <- progress_bar$new(total = nrow(df))
+  pb <- progress::progress_bar$new(total = nrow(df))
 
   # run the api call over every function
   for (i in seq(1, nrow(df))) {
