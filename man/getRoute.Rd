@@ -4,8 +4,8 @@
 \alias{getRoute}
 \title{Get route information}
 \usage{
-getRoute(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1,
-  vehicle = "truck")
+getRoute(url = setURL(type = "routing"), app_id, app_code, waypoint0,
+  waypoint1, vehicle = "truck")
 }
 \arguments{
 \item{url}{The base url as required to connect to the HERE API. If no value

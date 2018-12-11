@@ -4,8 +4,8 @@
 \alias{diffDistTruckCar}
 \title{Return delta in distance between truck and car routes}
 \usage{
-diffDistTruckCar(url = setRouteURL(), app_id, app_code, waypoint0,
-  waypoint1, unit = "km", rnd = TRUE)
+diffDistTruckCar(url = setURL(type = "routing"), app_id, app_code,
+  waypoint0, waypoint1, unit = "km", rnd = TRUE)
 }
 \arguments{
 \item{url}{The base url as required to connect to the HERE API. If no value

@@ -102,3 +102,52 @@ createWaypoint <- function(lat , lon) {
   return(wp)
 
 }
+
+
+#' Helper function to set the url in the API calls to the production
+#' standards.
+#'
+#' @param type The type of the API call. Can only be "routing" or "geocoding".
+#'
+#' @return The standard production url for the selected type.
+#' @export
+#'
+#' @examples
+#' setURL(type = "routing")
+#' setURL(type = "geocoding")
+setURL <- function(type) {
+
+  # check for input
+  if (methods::hasArg(type) == FALSE) {
+    stop("A valid type must be selected. This can only be routing or geocoding.")
+  }
+
+  # routing url
+  if (type == "routing") {
+
+    # product standards settings
+    route_url <-  "https://route.api.here.com/routing/"
+    version <-  "7.2"
+    last_part <- "/calculateroute.json?"
+
+    url <- paste0(route_url, version, last_part)
+
+  } else if (type == "geocoding") {
+
+    # product standards settings
+    geocode_url <- "https://batch.geocoder.api.here.com/"
+    version <-  "6.2"
+    last_part <- "/jobs/"
+
+    url <- paste0(geocode_url, version, last_part)
+
+  } else {
+
+    stop("Type can only be routing or geocoding.")
+
+  }
+
+  # return the url
+  return(url)
+
+}
