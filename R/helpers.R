@@ -135,11 +135,10 @@ setURL <- function(type) {
   } else if (type == "geocoding") {
 
     # product standards settings
-    geocode_url <- "https://batch.geocoder.api.here.com/"
-    version <-  "6.2"
-    last_part <- "/jobs/"
+    geocode_url <- "https://geocoder.api.here.com/"
+    version <-  "6.2/"
 
-    url <- paste0(geocode_url, version, last_part)
+    url <- paste0(geocode_url, version)
 
   } else {
 
