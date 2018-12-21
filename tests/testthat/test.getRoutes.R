@@ -1,17 +1,8 @@
-context("setRouteURL")
-
-test_that("Check outputs", {
-  expect_equal(setRouteURL(), "https://route.api.here.com/routing/7.2/calculateroute.json?")
-  expect_equal(setRouteURL(version = "xx"), "https://route.api.here.com/routing/xx/calculateroute.json?")
-  expect_equal(setRouteURL(url = "https://test.com/"), "https://test.com/7.2/calculateroute.json?")
-  expect_equal(setRouteURL(url = "https://test.com/", version = "xx"), "https://test.com/xx/calculateroute.json?")
-})
-
 context("getRoute")
 
 test_that("Check inputs", {
   expect_message(getRoute(app_id = "x", app_code = "x", waypoint0 = "52.5,13.45", waypoint1 = "52.5,13.45"),
-                 "No url in the input. Using the the standard url from setRouteURL().")
+                 "No url in the input. Using the the standard url from setURL().")
   expect_error(getRoute(app_code = "x"),
                "No app id in the input.")
   expect_error(getRoute(app_id = "x"),

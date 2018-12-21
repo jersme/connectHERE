@@ -51,3 +51,16 @@ test_that("Check outputs", {
   expect_equal(createWaypoint(48.20849, 16.37208),
                "48.20849,16.37208")
 })
+
+context("setURL")
+
+test_that("Check in and output", {
+  expect_equal(setURL(type = "routing"),
+               "https://route.api.here.com/routing/7.2/calculateroute.json?")
+  expect_equal(setURL(type = "geocoding"),
+               "https://geocoder.api.here.com/6.2/")
+  expect_error(setURL(type = "xxxx"),
+               "Type can only be routing or geocoding.")
+  expect_error(setURL(),
+               "A valid type must be selected. This can only be routing or geocoding.")
+})
