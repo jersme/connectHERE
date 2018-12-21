@@ -1,30 +1,8 @@
-#' Set routing url
-#'
-#' @param url The base url for here API. Standard is
-#' "https://route.api.here.com/routing/"
-#' @param version The version of the API to be called.
-#' Standard is version 7.2
-#'
-#' @return The desired url for the API call.
-#' @export
-#'
-#' @examples setRouteURL()
-setRouteURL <- function(url = "https://route.api.here.com/routing/", version = "7.2") {
-
-  # create url
-  last_part <- "/calculateroute.json?"
-  route_url <- paste0(url, version, last_part)
-
-  # return the url
-  return(route_url)
-
-}
-
 #' Get route information
 #'
 #' @param url The base url as required to connect to the HERE API. If no value
-#' is passed in this parameter the standard parameter from the setRouteURL() is
-#' used. See the documentation for the setRouteURL() for more information about
+#' is passed in this parameter the standard parameter from the setURL() is
+#' used. See the documentation for the setURL() for more information about
 #' the base url.
 #' @param app_id App id for the HERE REST API call. See the vignette: Getting
 #' Started how to get an App Id.
@@ -42,11 +20,11 @@ setRouteURL <- function(url = "https://route.api.here.com/routing/", version = "
 #' \dontrun{
 #' getRoute(app_id = "xxx", app_code = "xxx", waypoint0 = "52.5,13.45", waypoint1 = "53.5,13.45")
 #' }
-getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1, vehicle = "truck") {
+getRoute <- function(url = setURL(type = "routing"), app_id, app_code, waypoint0, waypoint1, vehicle = "truck") {
 
   # check for standard arguments
   if (methods::hasArg(url) == FALSE) {
-    message("No url in the input. Using the the standard url from setRouteURL().")
+    message("No url in the input. Using the the standard url from setURL().")
   }
 
   # check for app id and code
@@ -104,8 +82,8 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
 #' Return delta in distance between truck and car routes
 #'
 #' @param url The base url as required to connect to the HERE API. If no value
-#' is passed in this parameter the standard parameter from the setRouteURL() is
-#' used. See the documentation for the setRouteURL() for more information about
+#' is passed in this parameter the standard parameter from the setURL() is
+#' used. See the documentation for the setURL() for more information about
 #' the base url.
 #' @param app_id App id for the HERE REST API call. See the vignette: Getting
 #' Started how to get an App Id.
@@ -128,7 +106,7 @@ getRoute <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1
 #' waypoint0 = "52.5,13.4",
 #' waypoint1 = "54.5,13")
 #' }
-diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, waypoint1, unit = "km", rnd = TRUE) {
+diffDistTruckCar <- function(url = setURL(type = "routing"), app_id, app_code, waypoint0, waypoint1, unit = "km", rnd = TRUE) {
 
   # car/truck distance
   tryCatch({
@@ -148,8 +126,8 @@ diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, w
 #' Batch input (data.frame) for the diffDistTruckCar() function.
 #'
 #' @param url The base url as required to connect to the HERE API. If no value
-#' is passed in this parameter the standard parameter from the setRouteURL() is
-#' used. See the documentation for the setRouteURL() for more information about
+#' is passed in this parameter the standard parameter from the setURL() is
+#' used. See the documentation for the setURL() for more information about
 #' the base url.
 #' @param app_id App id for the HERE REST API call. See the vignette: Getting
 #' Started how to get an App Id.
@@ -170,7 +148,7 @@ diffDistTruckCar <- function(url = setRouteURL(), app_id, app_code, waypoint0, w
 #' app_id = "xxx",
 #' app_code = "xxx"
 #' )
-diffDistTruckCarBatch <- function(url = setRouteURL(),app_id, app_code, df, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
+diffDistTruckCarBatch <- function(url = setURL(type = "routing"), app_id, app_code, df, waypoint0 = "waypoint0", waypoint1 = "waypoint1") {
 
   # check the inputs
   if (methods::hasArg(df) == FALSE ) {
