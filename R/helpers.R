@@ -140,6 +140,14 @@ setURL <- function(type) {
 
     url <- paste0(geocode_url, version)
 
+  } else if (type == "batch geocode") {
+
+    # product standards settings
+    batch_geocode_url <- "https://batch.geocoder.api.here.com/"
+    version <-  "6.2/"
+
+    url <- paste0(batch_geocode_url, version)
+
   } else {
 
     stop("Type can only be routing or geocoding.")
