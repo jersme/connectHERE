@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get route information — getRoute • connectHERE</title>
+<title>Helper function to set the url in the API calls to the production
+standards. — setURL • connectHERE</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +31,11 @@
 
 
 
-<meta property="og:title" content="Get route information — getRoute" />
+<meta property="og:title" content="Helper function to set the url in the API calls to the production
+standards. — setURL" />
 
-<meta property="og:description" content="Get route information" />
+<meta property="og:description" content="Helper function to set the url in the API calls to the production
+standards." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,64 +115,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get route information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/getRoutes.R'><code>R/getRoutes.R</code></a></small>
-    <div class="hidden name"><code>getRoute.Rd</code></div>
+    <h1>Helper function to set the url in the API calls to the production
+standards.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    <div class="hidden name"><code>setURL.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get route information</p>
+    <p>Helper function to set the url in the API calls to the production
+standards.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getRoute</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"routing"</span>), <span class='no'>app_id</span>, <span class='no'>app_code</span>, <span class='no'>waypoint0</span>,
-  <span class='no'>waypoint1</span>, <span class='kw'>vehicle</span> <span class='kw'>=</span> <span class='st'>"truck"</span>)</pre>
+    <pre class="usage"><span class='fu'>setURL</span>(<span class='no'>type</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>url</th>
-      <td><p>The base url as required to connect to the HERE API. If no value
-is passed in this parameter the standard parameter from the setURL() is
-used. See the documentation for the setURL() for more information about
-the base url.</p></td>
-    </tr>
-    <tr>
-      <th>app_id</th>
-      <td><p>App id for the HERE REST API call. See the vignette: Getting
-Started how to get an App Id.</p></td>
-    </tr>
-    <tr>
-      <th>app_code</th>
-      <td><p>App Code for the HERE REST API call. See the vignette: Getting
-Started how to get an App Code.</p></td>
-    </tr>
-    <tr>
-      <th>waypoint0</th>
-      <td><p>Starting point as a position with in geocoordinates.</p></td>
-    </tr>
-    <tr>
-      <th>waypoint1</th>
-      <td><p>End point as a position with in geocoordinates.</p></td>
-    </tr>
-    <tr>
-      <th>vehicle</th>
-      <td><p>Vehicle type for which to calculate the route. Only two
-options are possible; "truck" or "car". The paramters defaults to "truck".</p></td>
+      <th>type</th>
+      <td><p>The type of the API call. Can only be "routing" or "geocoding".</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with all the information about the requested route.</p>
+    <p>The standard production url for the selected type.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>getRoute</span>(<span class='kw'>app_id</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>app_code</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>waypoint0</span> <span class='kw'>=</span> <span class='st'>"52.5,13.45"</span>, <span class='kw'>waypoint1</span> <span class='kw'>=</span> <span class='st'>"53.5,13.45"</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"routing"</span>)</div><div class='output co'>#&gt; [1] "https://route.api.here.com/routing/7.2/calculateroute.json?"</div><div class='input'><span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geocoding"</span>)</div><div class='output co'>#&gt; [1] "https://geocoder.api.here.com/6.2/"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

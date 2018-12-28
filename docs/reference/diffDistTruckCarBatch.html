@@ -123,8 +123,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>diffDistTruckCarBatch</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='fu'>setRouteURL</span>(), <span class='no'>app_id</span>, <span class='no'>app_code</span>, <span class='no'>df</span>,
-  <span class='kw'>waypoint0</span> <span class='kw'>=</span> <span class='st'>"waypoint0"</span>, <span class='kw'>waypoint1</span> <span class='kw'>=</span> <span class='st'>"waypoint1"</span>)</pre>
+    <pre class="usage"><span class='fu'>diffDistTruckCarBatch</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"routing"</span>), <span class='no'>app_id</span>, <span class='no'>app_code</span>,
+  <span class='no'>df</span>, <span class='kw'>waypoint0</span> <span class='kw'>=</span> <span class='st'>"waypoint0"</span>, <span class='kw'>waypoint1</span> <span class='kw'>=</span> <span class='st'>"waypoint1"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,8 +132,8 @@
     <tr>
       <th>url</th>
       <td><p>The base url as required to connect to the HERE API. If no value
-is passed in this parameter the standard parameter from the setRouteURL() is
-used. See the documentation for the setRouteURL() for more information about
+is passed in this parameter the standard parameter from the setURL() is
+used. See the documentation for the setURL() for more information about
 the base url.</p></td>
     </tr>
     <tr>

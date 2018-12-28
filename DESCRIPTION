@@ -25,5 +25,6 @@ Imports:
     httr,
     jsonlite,
     dplyr,
-    progress
+    progress,
+    readr
 VignetteBuilder: knitr

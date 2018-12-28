@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get route information — getRoute • connectHERE</title>
+<title>Batch geocode request — createBatchJob • connectHERE</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Get route information — getRoute" />
+<meta property="og:title" content="Batch geocode request — createBatchJob" />
 
-<meta property="og:description" content="Get route information" />
+<meta property="og:description" content="Batch geocode request" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,29 +112,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get route information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/getRoutes.R'><code>R/getRoutes.R</code></a></small>
-    <div class="hidden name"><code>getRoute.Rd</code></div>
+    <h1>Batch geocode request</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jersme/connectHERE/blob/master/R/getBatchGeocodes.R'><code>R/getBatchGeocodes.R</code></a></small>
+    <div class="hidden name"><code>createBatchJob.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get route information</p>
+    <p>Batch geocode request</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getRoute</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"routing"</span>), <span class='no'>app_id</span>, <span class='no'>app_code</span>, <span class='no'>waypoint0</span>,
-  <span class='no'>waypoint1</span>, <span class='kw'>vehicle</span> <span class='kw'>=</span> <span class='st'>"truck"</span>)</pre>
+    <pre class="usage"><span class='fu'>createBatchJob</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='fu'>setURL</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"batch geocode"</span>), <span class='no'>app_id</span>, <span class='no'>app_code</span>,
+  <span class='kw'>indelim</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>outdelim</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='no'>body</span>, <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"run"</span>, <span class='no'>mailto</span>,
+  <span class='no'>outcols</span>, <span class='kw'>outputcombined</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>url</th>
-      <td><p>The base url as required to connect to the HERE API. If no value
-is passed in this parameter the standard parameter from the setURL() is
-used. See the documentation for the setURL() for more information about
-the base url.</p></td>
+      <td><p>URL to call the API. If no URL is specified the standarc URL
+will be used.</p></td>
     </tr>
     <tr>
       <th>app_id</th>
@@ -147,28 +146,47 @@ Started how to get an App Id.</p></td>
 Started how to get an App Code.</p></td>
     </tr>
     <tr>
-      <th>waypoint0</th>
-      <td><p>Starting point as a position with in geocoordinates.</p></td>
+      <th>indelim</th>
+      <td><p>Field delimeter in the input data.</p></td>
     </tr>
     <tr>
-      <th>waypoint1</th>
-      <td><p>End point as a position with in geocoordinates.</p></td>
+      <th>outdelim</th>
+      <td><p>Field delimeter in the output data.</p></td>
     </tr>
     <tr>
-      <th>vehicle</th>
-      <td><p>Vehicle type for which to calculate the route. Only two
-options are possible; "truck" or "car". The paramters defaults to "truck".</p></td>
+      <th>body</th>
+      <td><p>Txt file with the data for which the geocodes need te be added.</p></td>
+    </tr>
+    <tr>
+      <th>action</th>
+      <td><p>Type of request, run is the standard,</p></td>
+    </tr>
+    <tr>
+      <th>mailto</th>
+      <td><p>Email address where completion notification is sent.</p></td>
+    </tr>
+    <tr>
+      <th>outcols</th>
+      <td><p>List of columns to return in the output.</p></td>
+    </tr>
+    <tr>
+      <th>outputcombined</th>
+      <td><p>If true, the output of successful and unsuccessful
+(empty response) Geocoder queries are combined into a single
+result_YYYYMMDD-HH-MM__out.txt file. If false, they are returned in
+two separate files ; result_YYYYMMDD-HH-MM__out.txt and
+result_YYYYMMDD-HH-MM__err.txt.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with all the information about the requested route.</p>
+    <p>HERE RequestID</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>getRoute</span>(<span class='kw'>app_id</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>app_code</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>waypoint0</span> <span class='kw'>=</span> <span class='st'>"52.5,13.45"</span>, <span class='kw'>waypoint1</span> <span class='kw'>=</span> <span class='st'>"53.5,13.45"</span>)
+<span class='fu'>createBatchJob</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>app_id</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>app_code</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>indelim</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>outdelim</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>body</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"run"</span>, <span class='kw'>mailto</span> <span class='kw'>=</span> <span class='st'>"test@test.com"</span>, <span class='kw'>outcols</span> <span class='kw'>=</span> <span class='st'>"xxx"</span>, <span class='kw'>outputcombined</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -1,4 +1,31 @@
-createBatchJob <- function(url = setURL(type = "batch geocode"), app_id, app_code, indelim = "|" , outdelim = "|", action = "run", mailto, outcols, outputcombined = FALSE) {
+#' Batch geocode request
+#'
+#' @param url URL to call the API. If no URL is specified the standarc URL
+#' will be used.
+#' @param app_id App id for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Id.
+#' @param app_code App Code for the HERE REST API call. See the vignette: Getting
+#' Started how to get an App Code.
+#' @param indelim Field delimeter in the input data.
+#' @param outdelim Field delimeter in the output data.
+#' @param body Txt file with the data for which the geocodes need te be added.
+#' @param action Type of request, run is the standard,
+#' @param mailto Email address where completion notification is sent.
+#' @param outcols List of columns to return in the output.
+#' @param outputcombined If true, the output of successful and unsuccessful
+#' (empty response) Geocoder queries are combined into a single
+#' result_YYYYMMDD-HH-MM__out.txt file. If false, they are returned in
+#' two separate files ; result_YYYYMMDD-HH-MM__out.txt and
+#' result_YYYYMMDD-HH-MM__err.txt.
+#'
+#' @return HERE RequestID
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' createBatchJob(url = "xxx", app_id = "xxx", app_code = "xxx", indelim = "|", outdelim = "|", body = "xxx", action = "run", mailto = "test@test.com", outcols = "xxx", outputcombined = FALSE)
+#' }
+createBatchJob <- function(url = setURL(type = "batch geocode"), app_id, app_code, indelim = "|" , outdelim = "|", body, action = "run", mailto, outcols, outputcombined = FALSE) {
 
   # set url
   if (methods::hasArg(url) == FALSE) {
@@ -41,9 +68,18 @@ createBatchJob <- function(url = setURL(type = "batch geocode"), app_id, app_cod
     warning("No ouputcombined specified, using FALSE.")
   }
 
+  # check for body
+  if (methods::hasArg(body) == FALSE) {
+    stop("No body present, please add body to the request.")
+  }
+
+  # get the locations in the body
+  #req_body <- readr::read_delim(file = body, delim = indelim)
+  #print(req_body)
+
 
 
   req_url <- paste0(url, "jobs?")
-  print(req_url)
+  return(req_url)
 
 }
